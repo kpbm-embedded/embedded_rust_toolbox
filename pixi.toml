@@ -1,0 +1,16 @@
+# 32_17_embedded_rust pixi env (managed by ./rust-box, see README.md). conda-forge only, pinned by
+# pixi.lock; env in ./.pixi, package caches in ./cache. Only what rustup cannot provide:
+# a host C toolchain (the linker driver for host builds: `cargo test` of no_std crates, build
+# scripts, `cargo install defmt-print`) and Python (lib/uf2conv.py, ELF -> UF2 for the Pico).
+# Rust itself comes from rustup (RUSTUP_HOME inside the ID, toolchain pinned in rust-toolchain.toml).
+[workspace]
+name = "embedded_rust_box"
+channels = ["conda-forge"]
+platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64", "win-64"]
+
+[dependencies]
+python = "3.12.*"
+
+[target.unix.dependencies]
+c-compiler = "1.*"
+make = "4.*"

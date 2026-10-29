@@ -1,0 +1,32 @@
+# rust-box: only sources go into git. Everything below is downloaded, installed or produced again by
+# ./rust-box bootstrap | install | examples test (pins: rust-toolchain.toml, config/pins.tsv, pixi.toml + pixi.lock,
+# Cargo.lock per example/template, pixi sha256 in rust-box).
+/.bin/
+/.pixi/
+/cache
+/install/
+/native/
+/build/
+/log/
+/config/local.env
+# cargo / rustup output if someone builds without the launcher (it puts target dirs in $OUT)
+target/
+.cargo-home/
+.rustup/
+# zig and erlang output of the interop examples when run by hand
+.zig-cache/
+zig-cache/
+zig-out/
+*.a
+*.beam
+# firmware images, archives, editor/python leftovers
+*.uf2
+*.elf
+*.bin
+*.hex
+*.tar.zst
+*.tar.gz
+*.tgz
+__pycache__/
+*.pyc
+*.log

@@ -1,0 +1,14 @@
+# Cross build for the WeAct STM32 boards, chosen by feature AND target (no default target):
+#   cargo build --release --features g431 --target thumbv7em-none-eabihf
+#   cargo build --release --features h562 --target thumbv8m.main-none-eabihf
+#   cargo build --release --features h743 --target thumbv7em-none-eabihf
+# flip-link wraps rust-lld (stack overflow protection). No runner: `cargo run` would flash a board.
+[target.thumbv7em-none-eabihf]
+linker = "flip-link"
+
+# unquoted on purpose: cargo splits config keys at dots, so a quoted 'thumbv8m.main-...' key is never found
+[target.thumbv8m.main-none-eabihf]
+linker = "flip-link"
+
+[env]
+DEFMT_LOG = "debug"

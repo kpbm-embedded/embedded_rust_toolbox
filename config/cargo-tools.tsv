@@ -1,0 +1,6 @@
+# cargo tools built by `cargo install --locked` into install/cargo-tools (tab separated).
+# group core = bootstrap; optional = ./rust-box cargo-tool <name>. Versions checked on crates.io 2026-10-25.
+# name	version	group	note
+defmt-print	1.2.0	core	decode defmt frames from stdin/TCP (probe-rs run decodes on its own)
+cargo-generate	0.25.1	optional	upstream template generator (rust-box new covers the bundled templates)
+elf2uf2-rs	2.2.0	optional	alternative UF2 converter (lib/uf2conv.py is bundled; needs libudev headers)

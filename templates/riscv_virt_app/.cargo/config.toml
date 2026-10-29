@@ -1,0 +1,8 @@
+# RV32IMAC (the Pico 2's Hazard3 cores use this target too) on QEMU's `virt` machine, no board:
+# `cargo run --release` boots it with the pinned qemu-system-riscv32 from ./rust-box (UART on this terminal).
+[build]
+target = "riscv32imac-unknown-none-elf"
+
+[target.riscv32imac-unknown-none-elf]
+runner = "qemu-system-riscv32 -machine virt -nographic -monitor none -bios none -kernel"
+rustflags = ["-C", "link-arg=-Tmemory.x", "-C", "link-arg=-Tlink.x"]

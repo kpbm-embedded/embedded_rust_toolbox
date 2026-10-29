@@ -1,0 +1,8 @@
+# Two images for QEMU lm3s6965evb: `boot` at 0x0 and `app` at 0x8000 (layout/*/memory.x, chosen per
+# binary in build.rs). Run both: qemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -nographic
+#   -semihosting-config enable=on,target=native -kernel boot.elf -device loader,file=app.bin,addr=0x8000 (app.bin: llvm-objcopy -O binary app.elf)
+[build]
+target = "thumbv7m-none-eabi"
+
+[target.thumbv7m-none-eabi]
+rustflags = ["-C", "link-arg=-Tlink.x"]

@@ -1,0 +1,6 @@
+# Pinned toolchain (same as 32_17_embedded_rust). rustup installs it on first use.
+[toolchain]
+channel = "1.99.1"
+profile = "minimal"
+components = ["llvm-tools", "rustfmt", "clippy"]
+targets = ["thumbv8m.main-none-eabihf"]

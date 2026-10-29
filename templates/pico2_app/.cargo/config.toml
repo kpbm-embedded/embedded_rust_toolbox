@@ -1,0 +1,11 @@
+# Pico 2 (RP2350A) Arm cores: Cortex-M33 = thumbv8m.main-none-eabihf. flip-link wraps rust-lld.
+# No runner on purpose: `cargo run` would flash a board (./rust-box plan pico2 <elf> prints how).
+[build]
+target = "thumbv8m.main-none-eabihf"
+
+# unquoted on purpose: cargo splits config keys at dots, so a quoted 'thumbv8m.main-...' key is never found
+[target.thumbv8m.main-none-eabihf]
+linker = "flip-link"
+
+[env]
+DEFMT_LOG = "debug"

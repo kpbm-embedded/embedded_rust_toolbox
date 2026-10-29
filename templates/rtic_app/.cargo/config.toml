@@ -1,0 +1,13 @@
+# Cross build for the board; flip-link (in-ID, pinned) wraps rust-lld for zero-cost stack
+# overflow protection. No runner on purpose: `cargo run` would flash a board. Use
+# rust-box plan blackpill_f411 <elf> to see the flash command, or uncomment:
+# [target.thumbv7em-none-eabihf]
+# runner = "probe-rs run --chip STM32F411CE"   # makes `cargo run` FLASH the board
+[build]
+target = "thumbv7em-none-eabihf"
+
+[target.thumbv7em-none-eabihf]
+linker = "flip-link"
+
+[env]
+DEFMT_LOG = "debug"

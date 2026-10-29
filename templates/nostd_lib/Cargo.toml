@@ -1,0 +1,23 @@
+[package]
+name = "@NAME@"
+version = "0.1.0"
+edition = "2024"
+publish = false
+license = "MIT OR Apache-2.0"
+description = "@NAME@: no_std library, host-tested"
+
+[features]
+defmt = ["dep:defmt"]
+
+[dependencies]
+defmt = { version = "1.2.0", optional = true }
+
+[profile.release]
+debug = 2
+opt-level = "s"
+lto = "fat"
+codegen-units = 1
+incremental = false
+
+[profile.dev]
+opt-level = "s"

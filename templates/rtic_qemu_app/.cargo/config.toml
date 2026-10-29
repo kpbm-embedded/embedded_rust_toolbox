@@ -1,0 +1,8 @@
+# Runs on QEMU's lm3s6965evb (TI Stellaris, Cortex-M3), no board needed: `cargo run --release`
+# starts the pinned qemu-system-arm from ./rust-box (semihosting prints to this terminal and exits).
+[build]
+target = "thumbv7m-none-eabi"
+
+[target.thumbv7m-none-eabi]
+runner = "qemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -nographic -monitor none -semihosting-config enable=on,target=native -kernel"
+rustflags = ["-C", "link-arg=-Tlink.x"]

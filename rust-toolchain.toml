@@ -1,0 +1,11 @@
+# Pinned Rust toolchain for everything under 32_17_embedded_rust (rustup reads this file from the
+# working directory upwards; RUSTUP_HOME is inside the ID, see lib/rust.bash).
+[toolchain]
+channel = "1.99.1"
+profile = "minimal"
+components = ["llvm-tools", "rustfmt", "clippy"]
+# thumbv6m: Pico RP2040; thumbv7em-hf: BlackPill F411, WeAct G431/H562/H743, nRF52840; thumbv7m: qemu
+# lm3s6965evb / mps2-an385; thumbv8m.main-hf: Pico 2 (RP2350 Arm); riscv32imac: Pico 2 Hazard3 and qemu
+# virt; riscv32imc: ESP32-C3. A fresh clone gets all of them from `./rust-box bootstrap`.
+targets = ["thumbv6m-none-eabi", "thumbv7em-none-eabihf", "thumbv7m-none-eabi", "thumbv8m.main-none-eabihf",
+           "riscv32imac-unknown-none-elf", "riscv32imc-unknown-none-elf"]

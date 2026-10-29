@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# about: Embassy on the Pico: buffered interrupt UART0 (GP0/GP1) line echo, reader task + Channel
+# Usage (through ./rust-box examples ...): example.sh build | run | test
+# run = build + PRINT the flash plan (never flashes); test = build + static ELF checks.
+set -euo pipefail
+act=${1:-run}
+# shellcheck source-path=SCRIPTDIR source=../common/fw.bash
+. ../common/fw.bash
+BIN=embassy_pico_uart
+ELF="$OUT/$BIN.elf"
+case "$act" in
+  build) fw_build "$BIN" ;;
+  run) fw_build "$BIN"; fw_plan pico "$ELF" ;;
+  test)
+    fw_build "$BIN"
+    fw_check "$ELF" 0x10000100 0x20000000
+    "$LAUNCH" uf2 "$ELF" -o "$OUT/$BIN.uf2"
+    [[ -s "$OUT/$BIN.uf2" ]] || { echo "FAIL: no uf2"; exit 1; }
+    echo "PASS embassy_pico_uart" ;;
+  *) echo "usage: example.sh build|run|test" >&2; exit 2 ;;
+esac

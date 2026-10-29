@@ -1,0 +1,11 @@
+# defmt frames over semihosting on QEMU lm3s6965evb: `./qemu-defmt.sh <elf>` (also the cargo runner) pipes
+# QEMU's stdout into defmt-print, which decodes the frames with the ELF's .defmt table.
+[build]
+target = "thumbv7m-none-eabi"
+
+[target.thumbv7m-none-eabi]
+runner = "./qemu-defmt.sh"
+rustflags = ["-C", "link-arg=-Tlink.x", "-C", "link-arg=-Tdefmt.x"]
+
+[env]
+DEFMT_LOG = "debug"

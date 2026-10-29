@@ -1,0 +1,33 @@
+[package]
+name = "qemu_defmt_test"
+version = "0.1.0"
+edition = "2024"
+publish = false
+license = "MIT OR Apache-2.0"
+
+[lib]
+test = false
+bench = false
+
+[[test]]
+name = "on_qemu"
+harness = false
+
+[dependencies]
+defmt = "1.2.0"
+
+[dev-dependencies]
+cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
+cortex-m-rt = "0.7.5"
+defmt-semihosting = "0.4.0"
+defmt-test = "0.5.1"
+panic-semihosting = { version = "0.7.0", features = ["exit"] }
+
+[profile.release]
+debug = 2
+opt-level = "s"
+lto = "fat"
+codegen-units = 1
+
+[profile.test]
+opt-level = "s"

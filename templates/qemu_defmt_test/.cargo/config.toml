@@ -1,0 +1,11 @@
+# defmt-test on QEMU lm3s6965evb: `cargo test` builds the test ELF and the runner (qemu-defmt.sh) runs it
+# in QEMU and decodes the results with defmt-print; the exit code is the test result.
+[build]
+target = "thumbv7m-none-eabi"
+
+[target.thumbv7m-none-eabi]
+runner = "./qemu-defmt.sh"
+rustflags = ["-C", "link-arg=-Tlink.x", "-C", "link-arg=-Tdefmt.x"]
+
+[env]
+DEFMT_LOG = "debug"

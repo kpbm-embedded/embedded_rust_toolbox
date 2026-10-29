@@ -1,0 +1,22 @@
+[package]
+name = "@NAME@"
+version = "0.1.0"
+edition = "2024"
+publish = false
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+rtic = { version = "2.4.0", features = ["thumbv7-backend"] }
+rtic-monotonics = { version = "3.0.0", features = ["cortex-m-systick"] }
+rtic-sync = "1.6.0"
+lm3s6965 = "0.2.0"
+cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
+cortex-m-rt = "0.7.5"
+cortex-m-semihosting = "0.6.0"
+panic-semihosting = { version = "0.7.0", features = ["exit"] }
+
+[profile.release]
+debug = 2
+opt-level = "s"
+lto = "fat"
+codegen-units = 1

@@ -1,0 +1,51 @@
+id = "32_17"
+name = "embedded_rust"
+kind = "tool"
+status = "active"
+tags = ["embedded"]
+
+[backup]
+tier = "critical"
+
+[tool]
+name = "embedded_rust"
+launcher = "rust-box"
+aliases = ["rust-box"]
+env_var = "BOX_EMBEDDED_RUST"
+env_path = "."
+native = "native/native.zsh"
+native_provides = ["defmt-print", "ecargo", "flip-link", "rb-probe-rs"]
+native_off_compat = ["RUSTBOX_NATIVE_OFF"]
+network = ["bootstrap", "install", "update"]
+conflicts = ["rust_next"]
+
+[scripts.rust-box]
+schema = 1
+kind = "launcher"
+path = "rust-box"
+summary = "self-contained embedded Rust (pinned rustup toolchain, Embassy, defmt, RTIC v2, probe-rs, flip-link)."
+interpreter = "sh"
+commands = ["help", "where", "bootstrap", "install", "update", "clean", "status", "doctor", "shell", "run", "test", "new", "examples", "native", "relocate", "pack", "boards", "plan", "uf2", "cargo", "rustup", "probe-rs", "flip-link", "defmt-print", "cargo-tool", "offline-check"]
+flags = ["--all", "--check", "--dir", "--dry-run", "--env", "--force", "--help", "--locked", "--no-demos", "--offline", "--out", "--print", "--release", "--with-cache", "--yes"]
+reads = { global = ["BOXT_DRY_RUN"] }
+dry_run_flag = "--dry-run"
+apply_flag = { clean = "--yes" }
+scope = "global"
+
+[scripts."test_dry_run.sh"]
+schema = 1
+kind = "test"
+path = "tests/test_dry_run.sh"
+summary = "Every rust-box command in --dry-run mode (no downloads, builds, moves or device access)"
+interpreter = "bash"
+depends = { scripts = ["rust-box"] }
+test = ["tests/test_dry_run.sh"]
+
+[scripts."test_smoke.sh"]
+schema = 1
+kind = "test"
+path = "tests/test_smoke.sh"
+summary = "Smoke test of the installed rust-box: the pinned tools run from the ID (not ~/.cargo)"
+interpreter = "bash"
+depends = { scripts = ["rust-box"] }
+test = ["tests/test_smoke.sh"]

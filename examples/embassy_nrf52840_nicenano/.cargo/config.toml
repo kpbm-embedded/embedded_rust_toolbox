@@ -1,0 +1,10 @@
+# nice!nano / Pro Micro nRF52840 (Cortex-M4F). Linked at 0x26000 so the S140 SoftDevice and the Adafruit UF2
+# bootloader stay: flash with the UF2 drive (./rust-box plan nicenano <elf>), no probe needed. No runner.
+[build]
+target = "thumbv7em-none-eabihf"
+
+[target.thumbv7em-none-eabihf]
+linker = "flip-link"
+
+[env]
+DEFMT_LOG = "debug"

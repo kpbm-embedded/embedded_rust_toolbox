@@ -1,0 +1,10 @@
+# Boards (the user's) -> Rust target, probe-rs chip, UF2 family. Tab separated.
+# board	chip	target	probe_rs	uf2_family	notes
+board	chip	target	probe_rs	uf2_family	notes
+pico	RP2040	thumbv6m-none-eabi	RP2040	rp2040	Raspberry Pi Pico; LED GP25; UART0 GP0/GP1; Debug Probe (CMSIS-DAP) on SWD or UF2 BOOTSEL
+blackpill_f411	STM32F411CEU6	thumbv7em-none-eabihf	STM32F411CE	-	WeAct BlackPill; LED PC13 (active low); KEY PA0; USART1 PA9/PA10; ST-LINK/DAPLink on SWD or USB DFU (BOOT0)
+pico2	RP2350A	thumbv8m.main-none-eabihf	RP235x	rp2350-arm	Raspberry Pi Pico 2; LED GP25; Arm cores (riscv32imac for the Hazard3 cores: probe-rs chip RP235x_riscv, UF2 family rp2350-riscv); Debug Probe on SWD or UF2 BOOTSEL (drive RP2350)
+weact_g431	STM32G431CBU6	thumbv7em-none-eabihf	STM32G431CB	-	WeAct STM32G431 core board; LED PC6; 128 KB flash, 32 KB SRAM; ST-LINK on SWD or USB DFU (BOOT0)
+weact_h562	STM32H562RGT6	thumbv8m.main-none-eabihf	STM32H562RG	-	WeAct STM32H562 core board (Cortex-M33); LED PB2; 1 MB flash; ST-LINK V3 on SWD or USB DFU (BOOT0)
+weact_h743	STM32H743VIT6	thumbv7em-none-eabihf	STM32H743VI	-	WeAct MiniSTM32H743; LED PE3; 2 MB flash, RAM (AXI SRAM) at 0x24000000; ST-LINK on SWD or USB DFU (BOOT0)
+nicenano	nRF52840	thumbv7em-none-eabihf	nRF52840_xxAA	nrf52840	nice!nano / Pro Micro nRF52840; LED P0.15; app at 0x26000 after S140 + Adafruit UF2 bootloader (double-tap RST, drive NICENANO); SWD pads on the back (a full erase removes the bootloader)
